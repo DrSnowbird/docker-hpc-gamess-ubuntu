@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo " "
+echo "************"
+echo "install.info"
+echo "************"
+echo " "
+cat install.info
+echo " "
+echo "*****************************************"
+echo "removing old executables and object files"
+echo "*****************************************"
+echo " "
+rm -f gamess.*.x ddikick.x ddi/*.x ddi/libddi.a bin/*.x object/*
+echo " "
+echo "***************"
+echo "running compddi"
+echo "***************"
+echo " "
+cd ddi
+./compddi
+if test -x ddikick.x
+then
+  mv ddikick.x ..
+fi
+cd ..
+echo " "
+echo "***************"
+echo "running compall"
+echo "***************"
+echo " "
+./compall
+echo " "
+echo "************"
+echo "running lked"
+echo "************"
+echo " "
+./lked gamess 00
+
+exit

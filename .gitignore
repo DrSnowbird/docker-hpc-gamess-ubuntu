@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# APPs
+GAMESS
+ATLAS
+osu*
+*.bz2
+*.tar.gz
+*.tgz
+*.zip
