@@ -1,9 +1,19 @@
 #!/bin/bash -x 
 
+#### ---- Usage ----
+#### **** DON'T RUN this directly! Use run-gamess.sh instead! ****
+####
+####  submit-pbs.sh <ncores> <ncores_per_node>
+
 #### ---- HPC Cores Setup ----
 ncores=${1:-392}
 ncores_per_node=${2:-28}
 let NNODES=($ncores+$ncores_per_node-1)/$ncores_per_node
+
+if [ $# -lt 2 ]; then
+    echo "**** ERROR ****: submit-pbs.sh <ncores> <ncores_per_node> "
+    exit 1
+fi
 
 MY_DIR="$(dirname $(readlink -f $0))"
 MY_HOME="$HOME"
@@ -12,7 +22,7 @@ MY_HOME="$HOME"
 ## Submit the job with a specific name
 #MSUB -N singularity_gamess
 ## Specify resources
-#MSUB  -l nodes=1,walltime=1:00 -W ENVREQUESTED:TRUE 
+#MSUB  -l nodes=##NNODES##,walltime=1:00 -W ENVREQUESTED:TRUE 
 ## Combine the standard out and standard error in the same output file
 #MSUB -j oe
 #MSUB -o singularity_gamess.out
