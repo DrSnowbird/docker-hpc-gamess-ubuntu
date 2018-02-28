@@ -12,7 +12,7 @@ fi
 ncores=${1:-392}
 ncores_per_node=${2:-28}
 let NNODES=($ncores+$ncores_per_node-1)/$ncores_per_node
-sed -i 's/##NNODES##/'$NNODES'/' `pwd`/submit-pbs-test.sh
+sed -i 's/##NNODES##/'$NNODES'/' `pwd`/submit-pbs.sh
 
 #### ---- PBS/QSUB setup ----
 abtp_jobid=`qsub submit-pbs.sh | cut -d. -f1`

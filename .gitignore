@@ -39,3 +39,6 @@ osu*
 *.tar.gz
 *.tgz
 *.zip
+submit*
+*.qdate
+
